@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import React, { useEffect, useState } from 'react';
+import { useLazyQuery } from '@apollo/react-hooks';
 import { gql } from '@apollo/client';
 
 const GET_COUNTRY_INFO = gql`
     query($first: Int, $offset: Int) {
-        Country(first: $first, offset: $offset) {
+        Country(first: $first, offset: $offset, orderBy: name_asc) {
             name,
             alpha2Code,
             officialLanguages {
@@ -41,7 +41,11 @@ type ListCountriesProps = {
 function ListCountries({id}: ListCountriesProps) {
     const [pageSize, setPageSize] = useState<number>(20);
     const [pageOffset, setPageOffset] = useState<number>(1);
-    const { data, loading, error } = useQuery<CountriesData>(GET_COUNTRY_INFO, {variables: {first: pageSize, offset: pageOffset}});
+    const [getCountries, {loading, data, error}] = useLazyQuery<CountriesData>(GET_COUNTRY_INFO);
+
+    useEffect(() => {
+        getCountries({variables: {first: pageSize, offset: pageOffset}});
+    }, [pageSize])
 
     if (data) console.log(data);
     return (
