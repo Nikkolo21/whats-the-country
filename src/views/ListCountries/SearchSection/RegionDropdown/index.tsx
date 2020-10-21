@@ -1,37 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { gql } from '@apollo/client';
-
+import { GET_REGION_INFO } from '../../../../graphql';
+import { RegionsData, Region } from '../../../../model/RegionDropdownModel';
 import useMyStore from '../../../../store';
 
-const GET_REGION_INFO = gql`{
-    Region(orderBy: name_asc) {
-        _id
-        name
-        subregions {
-            name
-            countries {
-                name
-            }
-        }
-    }
-}`;
-
-interface Region {
-    _id: string,
-    name: string,
-    subregions: object
-}
-
-interface RegionsData {
-    Region: Region[]
-}
-
-type RegionDropdownProps = {
-    id?: number
-}
-
-function RegionDropdown({id}: RegionDropdownProps) {
+function RegionDropdown() {
     const {loading, data} = useQuery<RegionsData>(GET_REGION_INFO);
     const [region, setRegion] = useState<string>("");
     const storeSubscription = useMyStore.subscribe(state => {setRegion(state.region)});

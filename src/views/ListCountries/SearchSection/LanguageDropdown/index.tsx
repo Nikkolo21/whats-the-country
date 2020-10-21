@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_LANGUAGE_INFO } from '../../../../graphql';
-import { LanguagesData, LanguageDropdownProps } from '../../../../model/LanguageDropdownModel';
+import { LanguagesData } from '../../../../model/LanguageDropdownModel';
 import Dropdown from '../../../shared/Dropdown';
 import useMyStore from '../../../../store';
 
-function LanguageDropdown({id}: LanguageDropdownProps) {
+function LanguageDropdown() {
     const {loading, data} = useQuery<LanguagesData>(GET_LANGUAGE_INFO);
     const [language, setLanguage] = useState<string>("");
     const storeSubscription = useMyStore.subscribe(state => {setLanguage(state.language)});

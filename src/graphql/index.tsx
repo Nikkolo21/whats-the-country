@@ -56,3 +56,17 @@ export const GET_LANGUAGE_INFO = gql`
             }
         }
     }`;
+
+export const GET_REGION_INFO = gql`
+    {
+        Region(orderBy: name_asc) {
+            _id
+            name
+            subregions {
+                name
+                countries {
+                    name
+                }
+            }
+        }
+    }`;

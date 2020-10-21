@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_CURRENCY_INFO } from '../../../../graphql';
-import { CurrenciesData, CurrencyDropdownProps } from '../../../../model/CurrencyDropdownModel';
+import { CurrenciesData } from '../../../../model/CurrencyDropdownModel';
 import Dropdown from '../../../shared/Dropdown';
 import useMyStore from '../../../../store';
 
-function CurrencyDropdown({id}: CurrencyDropdownProps) {
+function CurrencyDropdown() {
     const {loading, data} = useQuery<CurrenciesData>(GET_CURRENCY_INFO);
     const [currency, setCurrency] = useState<string>("");
 
