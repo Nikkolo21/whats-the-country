@@ -22,19 +22,44 @@ const GET_COUNTRY_INFO = gql`{
     }
 }`
 
-// type => properties
-// interface => API
+interface Country {
+    alpha2Code: string,
+    currencies: object[],
+    name: string,
+    officialLanguages: object[],
+    subregion: object
+}
+
+interface CountriesData {
+    Country: Country[]
+}
 
 type ListCountriesProps = {
     id?: number
 }
 
-const ListCountries: React.FC<ListCountriesProps> = ({id} : ListCountriesProps) => {
-    const { data, loading, error } = useQuery<object>(GET_COUNTRY_INFO);
+function ListCountries({id}: ListCountriesProps) {
+    const { data, loading, error } = useQuery<CountriesData>(GET_COUNTRY_INFO);
     if (data) console.log(data);
     return (
         <section>
-            { loading ? "...loading" : "lo que sea" }
+            { loading ? 
+                (
+                    <p>...loading</p>
+                ) : (
+                    <>
+                    {
+                        data && data.Country.map(elem => {
+                            return <div>
+                                <p>
+                                    {elem.name}
+                                </p>
+                            </div>
+                        })
+                    }
+                    </>
+                )
+            }
             { error && error }
         </section>
     )
