@@ -1,55 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useLazyQuery } from '@apollo/react-hooks';
-import { gql } from '@apollo/client';
-
+import { GET_COUNTRY_INFO } from '../../../graphql';
+import { CountriesData } from '../../../model/ListCountriesModel';
+import Dropdown from '../../shared/Dropdown';
 import useMyStore from '../../../store';
 
-const GET_COUNTRY_INFO = gql`
-    query($first: Int, $offset: Int, $language: String, $currency: String) {
-        Country(orderBy: name_asc, first: $first, offset: $offset, filter: {
-            officialLanguages_single: {
-                iso639_1_starts_with: $language
-            },
-            currencies_single: {
-                name_starts_with: $currency
-            }
-        }) 
-        {
-            name,
-            alpha2Code,
-            nameTranslation,
-            officialLanguages {
-                name
-            },
-            currencies {
-                name
-            },
-            subregion {
-                name,
-                region {
-                    name
-                }
-            }
-        }
-    }`;
-
-interface Country {
-    alpha2Code: string,
-    currencies: object[],
-    name: string,
-    officialLanguages: object[],
-    subregion: object
-}
-
-interface CountriesData {
-    Country: Country[]
-}
-
-type ListCountriesProps = {
-    id?: number
-}
-
-function List({id}: ListCountriesProps) {
+function List() {
     const [pageSize, setPageSize] = useState<number>(20);
     const [pageOffset, setPageOffset] = useState<number>(0);
     const [language, setLanguage] = useState<string>("");
@@ -72,9 +28,6 @@ function List({id}: ListCountriesProps) {
     })
 
     if (data) console.log(data);
-
-    if (loading) return <p>...loading</p>
-
     return (
         <section>
             {
@@ -86,17 +39,35 @@ function List({id}: ListCountriesProps) {
                     </div>
                 })
             }
-            <select value={pageSize} onChange={
-                e => {
-                    setPageSize(Number(e.target.value));
-                    setPageOffset(0);
-                }}>
-                <option value={10}>10</option>
-                <option value={20}>20</option>
-                <option value={30}>30</option>
-                <option value={50}>50</option>
-                <option value={100}>100</option>
-            </select>
+            
+            <Dropdown
+                selectedValue={pageSize}
+                onChangeFn={(e: number) => {setPageSize(Number(e)); setPageOffset(0)}}
+                loading={loading}
+                data={[
+                    {
+                        _id: 1,
+                        value: 10
+                    },
+                    {
+                        _id: 2,
+                        value: 20
+                    },
+                    {
+                        _id: 3,
+                        value: 30
+                    },
+                    {
+                        _id: 4,
+                        value: 50
+                    },
+                    {
+                        _id: 5,
+                        value: 100
+                    },
+                ]}
+                value="value"
+            />
         </section>
     )
 }

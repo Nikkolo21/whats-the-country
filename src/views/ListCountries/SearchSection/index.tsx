@@ -4,7 +4,7 @@ import CurrencyDropdown from './CurrencyDropdown';
 import LanguageDropdown from './LanguageDropdown';
 import RegionDropdown from './RegionDropdown';
 
-function SearchBar() {
+function SearchSection() {
     return (
         <section>
             <LanguageDropdown/>
@@ -14,4 +14,4 @@ function SearchBar() {
     )
 }
 
-export default SearchBar;
+export default SearchSection;
