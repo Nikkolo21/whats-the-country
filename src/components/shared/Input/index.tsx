@@ -11,6 +11,7 @@ type InputType = {
 function Input({placeholder, inputType, inputName, inputRef, defaultValue}: InputType) {
     return (
         <input
+            defaultValue={defaultValue}
             className="block w-full bg-white text-gray-700 border rounded p-4 leading-tight focus:outline-none"
             placeholder={placeholder}
             type={inputType}

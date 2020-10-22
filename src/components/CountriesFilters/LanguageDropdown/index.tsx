@@ -1,13 +1,21 @@
-import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import React, { useEffect } from 'react';
 import { GET_LANGUAGE_INFO } from '../../../graphql';
 import { LanguagesData } from '../../../model/LanguageDropdownModel';
-import Dropdown from '../../shared/Dropdown';
 import { useStore } from '../../../store';
+import Dropdown from '../../shared/Dropdown';
+import { useLazyQuery } from '@apollo/react-hooks';
 
 function LanguageDropdown() {
-    const {loading, data} = useQuery<LanguagesData>(GET_LANGUAGE_INFO);
-    const [language, setLanguage] = useStore(state => [state.language, state.setLanguage]);
+    const [searchLanguages, {loading, data}] = useLazyQuery<LanguagesData>(GET_LANGUAGE_INFO);
+    const [inputSearch, language, setLanguage] = useStore(state => [state.inputSearch, state.language, state.setLanguage]);
+
+    useEffect(() => {
+        searchLanguages({
+            variables: {
+                country: inputSearch
+            }
+        })
+    }, [inputSearch])
 
     return (
         <Dropdown

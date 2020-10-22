@@ -1,13 +1,21 @@
-import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import React, { useEffect } from 'react';
 import { GET_CURRENCY_INFO } from '../../../graphql';
 import { CurrenciesData } from '../../../model/CurrencyDropdownModel';
 import Dropdown from '../../shared/Dropdown';
 import {useStore} from '../../../store';
+import { useLazyQuery } from '@apollo/react-hooks';
 
 function CurrencyDropdown() {
-    const {loading, data} = useQuery<CurrenciesData>(GET_CURRENCY_INFO);
-    const [currency, setCurrency] = useStore(state => [state.currency, state.setCurrency]);
+    const [searchCurrencies, {loading, data}] = useLazyQuery<CurrenciesData>(GET_CURRENCY_INFO);
+    const [inputSearch, currency, setCurrency] = useStore(state => [state.inputSearch, state.currency, state.setCurrency]);
+
+    useEffect(() => {
+        searchCurrencies({
+            variables: {
+                country: inputSearch
+            }
+        })
+    }, [inputSearch])
 
     return (
         <Dropdown

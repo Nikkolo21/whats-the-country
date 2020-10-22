@@ -3,12 +3,15 @@ import Button from '../shared/Button';
 import Input from '../shared/Input';
 import { useForm } from "react-hook-form";
 import {useStore} from '../../store';
+import { useHistory } from 'react-router-dom';
 
 export default function SearchBar() {
+    const history = useHistory();
     const { register, handleSubmit } = useForm();
     const [inputSearch, setInputSearch] = useStore(state => [state.inputSearch, state.setInputSearch]);
 
     const onSubmit = (inputSearch: string) => {
+        history.push("/countries");
         setInputSearch(inputSearch);
     }
 

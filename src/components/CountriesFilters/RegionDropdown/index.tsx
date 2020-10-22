@@ -1,13 +1,21 @@
-import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import React, { useEffect } from 'react';
+import { useLazyQuery } from '@apollo/react-hooks';
 import { GET_REGION_INFO } from '../../../graphql';
 import { RegionsData } from '../../../model/RegionDropdownModel';
 import Dropdown from '../../shared/Dropdown';
 import {useStore} from '../../../store';
 
 function RegionDropdown() {
-    const {loading, data} = useQuery<RegionsData>(GET_REGION_INFO);
-    const [region, setRegion] = useStore(state => [state.region, state.setRegion]);
+    const [searchRegions, {loading, data}] = useLazyQuery<RegionsData>(GET_REGION_INFO);
+    const [inputSearch, region, setRegion] = useStore(state => [state.inputSearch, state.region, state.setRegion]);
+
+    useEffect(() => {
+        searchRegions({
+            variables: {
+                country: inputSearch
+            }
+        })
+    }, [inputSearch])
 
     return (
         <Dropdown

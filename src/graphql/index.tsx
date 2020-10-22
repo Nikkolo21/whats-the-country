@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from 'apollo-boost';
 
 export const GET_COUNTRY_INFO = gql`
     query($first: Int, $offset: Int, $language: String, $currency: String, $name: String) {
@@ -32,8 +32,12 @@ export const GET_COUNTRY_INFO = gql`
 
     
 export const GET_CURRENCY_INFO = gql`
-    {
-        Currency(orderBy: name_asc) {
+    query($country: String) {
+        Currency(orderBy: name_asc, filter: {
+            countries_some: {
+                name_contains: $country
+            }
+        }) {
             _id
             name
             code
@@ -45,8 +49,12 @@ export const GET_CURRENCY_INFO = gql`
     }`;
 
 export const GET_LANGUAGE_INFO = gql`
-    {
-        Language(orderBy: name_asc) {
+    query($country: String) {
+        Language(orderBy: name_asc, filter: {
+            countries_some: {
+                name_contains: $country
+            }
+        }) {
             _id
             iso639_1
             iso639_2
@@ -56,11 +64,16 @@ export const GET_LANGUAGE_INFO = gql`
                 name
             }
         }
+
     }`;
 
 export const GET_REGION_INFO = gql`
-    {
-        Region(orderBy: name_asc) {
+    query($country: String) {
+        Region(orderBy: name_asc, filter: {
+            countries_some: {
+                name_contains: $country
+            }
+        }) {
             _id
             name
             subregions {
