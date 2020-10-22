@@ -4,6 +4,7 @@ import { GET_COUNTRY_INFO } from '../../../graphql';
 import { CountriesData } from '../../../model/ListCountriesModel';
 import Dropdown from '../../shared/Dropdown';
 import useMyStore from '../../../store';
+import { useParams } from 'react-router-dom';
 
 function List() {
     const [pageSize, setPageSize] = useState<number>(20);
@@ -11,15 +12,16 @@ function List() {
     const [language, setLanguage] = useState<string>("");
     const [currency, setCurrency] = useState<string>("");
     const [getCountries, {loading, data}] = useLazyQuery<CountriesData>(GET_COUNTRY_INFO);
+    const {countryName} = useParams<{countryName: string}>();
 
     const storeSubscription = useMyStore.subscribe(state => {
         setLanguage(state.language);
         setCurrency(state.currency);
     });
-    
+
     useEffect(() => {
-        getCountries({variables: {first: pageSize, offset: pageOffset, language, currency}});
-    }, [pageSize, pageOffset, language, currency, getCountries]);
+        getCountries({variables: {first: pageSize, offset: pageOffset, language, currency, name: countryName}});
+    }, [pageSize, pageOffset, language, currency, countryName, getCountries]);
 
     useEffect(() => {
         return () => {

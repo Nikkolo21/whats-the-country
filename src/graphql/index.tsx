@@ -1,14 +1,15 @@
 import { gql } from '@apollo/client';
 
 export const GET_COUNTRY_INFO = gql`
-    query($first: Int, $offset: Int, $language: String, $currency: String) {
+    query($first: Int, $offset: Int, $language: String, $currency: String, $name: String) {
         Country(orderBy: name_asc, first: $first, offset: $offset, filter: {
+            name_contains: $name,
             officialLanguages_some: {
                 name_starts_with: $language
             },
             currencies_some: {
                 name_starts_with: $currency
-            }
+            },
         }) 
         {
             name,
