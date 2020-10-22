@@ -22784,6 +22784,10 @@ video {
           animation: bounce 1s infinite;
 }
 
+.hola {
+  color: green;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

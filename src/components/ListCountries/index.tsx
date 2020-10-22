@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useLazyQuery } from '@apollo/react-hooks';
-import { GET_COUNTRY_INFO } from '../../../graphql';
-import { CountriesData } from '../../../model/ListCountriesModel';
-import Dropdown from '../../shared/Dropdown';
-import useMyStore from '../../../store';
+import { GET_COUNTRY_INFO } from '../../graphql';
+import { CountriesData } from '../../model/ListCountriesModel';
+import Dropdown from '../../components/shared/Dropdown';
+import useMyStore from '../../store';
 import { useParams } from 'react-router-dom';
 
 function List() {
@@ -11,17 +11,25 @@ function List() {
     const [pageOffset, setPageOffset] = useState<number>(0);
     const [language, setLanguage] = useState<string>("");
     const [currency, setCurrency] = useState<string>("");
+    const [ countryName, setCountryName ] = useState<string>("");
+    const { search } = useParams<{search: string}>();
+
     const [getCountries, {loading, data}] = useLazyQuery<CountriesData>(GET_COUNTRY_INFO);
-    const {countryName} = useParams<{countryName: string}>();
 
     const storeSubscription = useMyStore.subscribe(state => {
         setLanguage(state.language);
         setCurrency(state.currency);
+        setCountryName(state.inputSearch);
     });
+
+    useEffect(() => {
+        setCountryName(search);
+    }, [search]);
 
     useEffect(() => {
         getCountries({variables: {first: pageSize, offset: pageOffset, language, currency, name: countryName}});
     }, [pageSize, pageOffset, language, currency, countryName, getCountries]);
+
 
     useEffect(() => {
         return () => {
@@ -34,13 +42,13 @@ function List() {
     return (
         <section className="lg:px-64 p-5">
             {
-                data && data.Country && data.Country.map(elem => {
-                    return <div key={elem.alpha2Code}>
+                data && data.Country && data.Country.map(elem => (
+                    <div key={elem.alpha2Code}>
                         <p>
                             {elem.name}
                         </p>
-                    </div>
-                })
+                    </div>)
+                )
             }
             
             <Dropdown

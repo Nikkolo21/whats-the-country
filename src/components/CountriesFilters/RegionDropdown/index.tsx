@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { GET_REGION_INFO } from '../../../../graphql';
-import { RegionsData } from '../../../../model/RegionDropdownModel';
-import Dropdown from '../../../shared/Dropdown';
-import useMyStore from '../../../../store';
+import { GET_REGION_INFO } from '../../../graphql';
+import { RegionsData } from '../../../model/RegionDropdownModel';
+import Dropdown from '../../shared/Dropdown';
+import useMyStore from '../../../store';
 
 function RegionDropdown() {
     const {loading, data} = useQuery<RegionsData>(GET_REGION_INFO);
@@ -16,11 +16,9 @@ function RegionDropdown() {
         }
     })
 
-    if (loading) return <p>...loading</p>
-
     return (
         <Dropdown
-            title="Select Region"
+            title="Any Region"
             selectedValue={region}
             onChangeFn={(e: string) => useMyStore.setState({region: e})}
             loading={loading}

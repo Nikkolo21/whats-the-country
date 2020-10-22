@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { GET_LANGUAGE_INFO } from '../../../../graphql';
-import { LanguagesData } from '../../../../model/LanguageDropdownModel';
-import Dropdown from '../../../shared/Dropdown';
-import useMyStore from '../../../../store';
+import { GET_LANGUAGE_INFO } from '../../../graphql';
+import { LanguagesData } from '../../../model/LanguageDropdownModel';
+import Dropdown from '../../shared/Dropdown';
+import useMyStore from '../../../store';
 
 function LanguageDropdown() {
     const {loading, data} = useQuery<LanguagesData>(GET_LANGUAGE_INFO);
@@ -18,7 +18,7 @@ function LanguageDropdown() {
 
     return (
         <Dropdown
-            title="Select Language"
+            title="Any Language"
             selectedValue={language}
             onChangeFn={(e: string) => useMyStore.setState({language: e})}
             loading={loading}

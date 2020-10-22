@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { GET_CURRENCY_INFO } from '../../../../graphql';
-import { CurrenciesData } from '../../../../model/CurrencyDropdownModel';
-import Dropdown from '../../../shared/Dropdown';
-import useMyStore from '../../../../store';
+import { GET_CURRENCY_INFO } from '../../../graphql';
+import { CurrenciesData } from '../../../model/CurrencyDropdownModel';
+import Dropdown from '../../shared/Dropdown';
+import useMyStore from '../../../store';
 
 function CurrencyDropdown() {
     const {loading, data} = useQuery<CurrenciesData>(GET_CURRENCY_INFO);
@@ -17,11 +17,9 @@ function CurrencyDropdown() {
         }
     })
 
-    if (loading) return <p>...loading</p>
-
     return (
         <Dropdown
-            title="Select Currency"
+            title="Any Currency"
             selectedValue={currency}
             onChangeFn={(e: string) => useMyStore.setState({currency: e})}
             loading={loading}

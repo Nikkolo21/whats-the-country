@@ -11,7 +11,9 @@ type DropdownProps = {
 
 function Dropdown({onChangeFn, selectedValue, title, loading, data, value}: DropdownProps) {
 
-    if (loading) return <p>...loading</p>
+    if (loading) return (
+        <div className="inline-block w-56 h-12 bg-gray-200 ml-2 rounded"></div>
+    );
 
     return (
         <section className="inline-block text-gray-800 text-center px-2 bg-blue-100 mx-2 rounded my-2 md:my-0">

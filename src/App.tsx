@@ -8,10 +8,10 @@ import './styles/tailwind.output.css';
 function App() {
   return (
     <Router>
-      <Route path="/">
+      <Route exact path="/">
         <SearchCountries/>
       </Route>
-      <Route path="/countries/:countryName">
+      <Route path="/countries/:search">
         <ListCountries/>
       </Route>
     </Router>
