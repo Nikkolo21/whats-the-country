@@ -1,12 +1,12 @@
 import React from 'react';
 import List from './List';
-import SearchSection from './SearchSection';
+import CountriesFilters from './CountriesFilters';
 
 export default function ListCountries () {
     return (
-        <>
-            <SearchSection/>
+        <section className="py-5 lg:px-64">
+            <CountriesFilters/>
             <List/>
-        </>
+        </section>
     )
 }

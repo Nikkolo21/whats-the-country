@@ -28,8 +28,9 @@ function List() {
     })
 
     if (data) console.log(data);
+
     return (
-        <section>
+        <section className="lg:px-64 p-5">
             {
                 data && data.Country && data.Country.map(elem => {
                     return <div key={elem.alpha2Code}>

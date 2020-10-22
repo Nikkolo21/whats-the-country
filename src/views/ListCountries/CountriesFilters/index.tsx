@@ -1,19 +1,14 @@
 import React from 'react';
-
-import SearchBar from './SearchBar';
-import CurrencyDropdown from './CurrencyDropdown';
 import LanguageDropdown from './LanguageDropdown';
+import CurrencyDropdown from './CurrencyDropdown';
 import RegionDropdown from './RegionDropdown';
 
-function SearchSection() {
+export default function CountriesFilters() {
     return (
-        <section>
-            <SearchBar/>
+        <section className="flex flex-col md:flex-row py-5">
             <LanguageDropdown/>
             <CurrencyDropdown/>
             <RegionDropdown/>
         </section>
     )
 }
-
-export default SearchSection;

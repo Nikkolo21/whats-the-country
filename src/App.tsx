@@ -1,12 +1,17 @@
 import React from 'react';
 import './App.css';
-import ListCountries from './views/ListCountries';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import SearchCountries from './views/SearchCountries';
+import ListCountries from './views/ListCountries';
+import './styles/tailwind.output.css';
 
 function App() {
   return (
     <Router>
       <Route path="/">
+        <SearchCountries/>
+      </Route>
+      <Route path="/search">
         <ListCountries/>
       </Route>
     </Router>
