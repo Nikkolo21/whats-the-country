@@ -11,7 +11,7 @@ function App() {
       <Route exact path="/">
         <SearchCountries/>
       </Route>
-      <Route path="/countries/:search">
+      <Route path="/countries">
         <ListCountries/>
       </Route>
     </Router>

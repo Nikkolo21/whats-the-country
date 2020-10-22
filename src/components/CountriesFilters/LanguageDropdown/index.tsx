@@ -1,26 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_LANGUAGE_INFO } from '../../../graphql';
 import { LanguagesData } from '../../../model/LanguageDropdownModel';
 import Dropdown from '../../shared/Dropdown';
-import useMyStore from '../../../store';
+import { useStore } from '../../../store';
 
 function LanguageDropdown() {
     const {loading, data} = useQuery<LanguagesData>(GET_LANGUAGE_INFO);
-    const [language, setLanguage] = useState<string>("");
-    const storeSubscription = useMyStore.subscribe(state => {setLanguage(state.language)});
-
-    useEffect(() => {
-        return () => {
-            storeSubscription(); // unsuscribe
-        }
-    })
+    const [language, setLanguage] = useStore(state => [state.language, state.setLanguage]);
 
     return (
         <Dropdown
             title="Any Language"
             selectedValue={language}
-            onChangeFn={(e: string) => useMyStore.setState({language: e})}
+            onChangeFn={(e: string) => setLanguage(e)}
             loading={loading}
             data={data && data.Language}
             value="name"
