@@ -5,7 +5,7 @@ export default function CountryDetailsBorders({title, elements}: {title: string,
     const history = useHistory();
     return (
         <div className="flex flex-wrap text-base md:text-lg my-2">
-            {title} {
+            {title}: {
                 elements && elements[0] ? elements.map(
                     elem => <img
                         key={elem._id}

@@ -7,7 +7,8 @@ export default function ListCountriesFooter() {
     const [pageSize, setPageSize, setPageOffset] = useStore(state => [state.pageSize, state.setPageSize, state.setPageOffset]);
 
     return (
-        <div>
+        <footer className="flex">
+            <span className="mt-3">Elements: </span>
             <Dropdown
                 selectedValue={pageSize}
                 onChangeFn={(e: number) => {setPageSize(Number(e)); setPageOffset(0)}}
@@ -15,6 +16,6 @@ export default function ListCountriesFooter() {
                 data={elementsPerPage}
                 value="value"
             />
-        </div>
+        </footer>
     )
 }
