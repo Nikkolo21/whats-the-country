@@ -16,7 +16,7 @@ export default function SearchBar() {
     }
 
     return (
-        <section className="flex py-16 lg:px-64 bg-indigo-500">
+        <section className="flex py-16 px-12 lg:px-24 xl:px-64 bg-indigo-500">
             <form onSubmit={handleSubmit((e) => onSubmit(e.countryName))} className="flex w-full w-full px-3 md:mb-0">
                 <Input defaultValue={inputSearch} inputRef={register()} inputName="countryName" inputType="text" placeholder="Search country"></Input>
                 <Button primary title="Search"/>

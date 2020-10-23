@@ -8,7 +8,7 @@ export default function ListCountries () {
     return (
         <>
             <SearchBar/>
-            <section className="p-5 lg:px-64">
+            <section className="p-12 xl:px-64">
                 <ListCountriesFilters/>
                 <List/>
                 <ListCountriesFooter/>

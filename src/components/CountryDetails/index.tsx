@@ -23,22 +23,24 @@ export default function CountryDetails() {
         data && data.Country && data.Country[0] && setCountry(data.Country[0]); 
     }, [data])
 
-    if (loading) return (<>...loading</>);
-
     return (
         <section className="grid p-8 sm:p-0 bg-indigo-400 min-h-screen">
-            <div className="bg-white p-8 sm:p-12 md:p-20 rounded w-full sm:w-5/6 lg:w-4/6 xl:w-3/6 object-center place-self-center">
-                <CountryDetailsTitle title={country?.name}/>
-                <div className="flex flex-col">
-                    <CountryDetailsElement title="Capital" element={country?.capital}/>
-                    <CountryDetailsElement title="Subregion" element={country?.subregion.name}/>
-                    <CountryDetailsElement title="Population" element={`${country?.population} people`}/>
-                    <CountryDetailsElement title="Area" element={`${country?.area}KM`}/>
-                    <CountryDetailsBorders title="Borders" elements={country?.borders}/>
-                    <CountryDetailsList title="Languages" elements={country?.officialLanguages}/>
-                    <CountryDetailsList title="Timezones" elements={country?.timezones}/>
+            {
+                loading || !country ?
+                <div className="p-64 bg-gray-200 rounded w-64 sm:w-5/6 lg:w-4/6 xl:w-3/6 object-center place-self-center"/> :
+                <div className="bg-white p-8 sm:p-12 md:p-20 rounded w-full sm:w-5/6 lg:w-4/6 xl:w-3/6 object-center place-self-center">
+                    <CountryDetailsTitle title={country?.name}/>
+                    <div className="flex flex-col">
+                        <CountryDetailsElement title="Capital" element={country?.capital}/>
+                        <CountryDetailsElement title="Subregion" element={country?.subregion.name}/>
+                        <CountryDetailsElement title="Population" element={`${country?.population} people`}/>
+                        <CountryDetailsElement title="Area" element={`${country?.area}KM`}/>
+                        <CountryDetailsBorders title="Borders" elements={country?.borders}/>
+                        <CountryDetailsList title="Languages" elements={country?.officialLanguages}/>
+                        <CountryDetailsList title="Timezones" elements={country?.timezones}/>
+                    </div>
                 </div>
-            </div>
+            }
         </section>
     )
 }
