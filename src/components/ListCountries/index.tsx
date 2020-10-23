@@ -33,7 +33,7 @@ function List() {
         });
     }, [language, currency, region, inputSearch, pageOffset, pageSize, getCountries])
 
-    if (data) console.log(data);
+    if (loading) return <div className="w-full bg-gray-200 my-2 px-16 py-12 rounded"></div>
 
     return (
         <section>
@@ -45,6 +45,8 @@ function List() {
                     alpha2Code={elem.alpha2Code}
                     officialLanguages={elem.officialLanguages}
                     subregion={elem.subregion}
+                    flag={elem.flag}
+                    nativeName={elem.nativeName}
                 />)
             }
         </section>

@@ -3,7 +3,7 @@ import { useLazyQuery } from '@apollo/react-hooks';
 import { GET_REGION_INFO } from '../../../graphql';
 import { SubregionsData } from '../../../model/RegionDropdownModel';
 import Dropdown from '../../shared/Dropdown';
-import {useStore} from '../../../store';
+import { useStore } from '../../../store';
 
 function RegionDropdown() {
     const [searchRegions, {loading, data}] = useLazyQuery<SubregionsData>(GET_REGION_INFO);

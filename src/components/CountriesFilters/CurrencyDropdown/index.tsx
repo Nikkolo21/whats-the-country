@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
+import { useLazyQuery } from '@apollo/react-hooks';
 import { GET_CURRENCY_INFO } from '../../../graphql';
 import { CurrenciesData } from '../../../model/CurrencyDropdownModel';
 import Dropdown from '../../shared/Dropdown';
-import {useStore} from '../../../store';
-import { useLazyQuery } from '@apollo/react-hooks';
+import { useStore } from '../../../store';
 
 function CurrencyDropdown() {
     const [searchCurrencies, {loading, data}] = useLazyQuery<CurrenciesData>(GET_CURRENCY_INFO);

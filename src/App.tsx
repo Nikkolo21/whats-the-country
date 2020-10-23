@@ -7,14 +7,16 @@ import './styles/tailwind.output.css';
 
 function App() {
   return (
-    <Router>
-      <Route exact path="/">
-        <SearchCountries/>
-      </Route>
-      <Route path="/countries">
-        <ListCountries/>
-      </Route>
-    </Router>
+    <section style={{backgroundColor: 'rgba(10, 10, 10, 0.04)', minHeight: '100vh'}}>
+      <Router>
+        <Route exact path="/">
+          <SearchCountries/>
+        </Route>
+        <Route path="/countries">
+          <ListCountries/>
+        </Route>
+      </Router>
+    </section>
   );
 }
 

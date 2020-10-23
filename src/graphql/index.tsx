@@ -16,8 +16,12 @@ export const GET_COUNTRY_INFO = gql`
         }) 
         {
             name,
+            nativeName,
             alpha2Code,
             nameTranslation,
+            flag {
+                svgFile
+            },
             officialLanguages {
                 name
             },
