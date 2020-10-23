@@ -1,21 +1,39 @@
-export interface Country {
+import { Subregion } from "../RegionDropdownModel";
+
+export interface CountryBase {
+    _id: string,
     alpha2Code: string,
     name: string,
     nativeName: string,
-    flag: flag,
-    capital?: string,
-    population?: string,
-    area?: number,
+    flag: Flag,
 }
 
-interface flag {
+export interface Country extends CountryBase {
+    capital: string,
+    population: string,
+    area: number,
+    borders: CountryBase[],
+    officialLanguages: Language[],
+    timezones: Timezone[],
+    subregion: Subregion
+}
+
+
+export interface Language {
+    _id: string,
+    name: string
+}
+
+export interface Timezone {
+    _id: string,
+    name: string
+}
+
+export interface Flag {
+    _id: string,
     svgFile: string
 }
 
 export interface CountriesData {
     Country: Country[]
-}
-
-export type ListCountriesProps = {
-    id?: number
 }

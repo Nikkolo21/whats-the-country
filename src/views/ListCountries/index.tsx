@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchBar from '../../components/SearchBar';
-import CountriesFilters from '../../components/CountriesFilters';
+import ListCountriesFilters from '../../components/ListCountriesFilters';
 import List from '../../components/ListCountries';
 import ListCountriesFooter from '../../components/ListCountriesFooter';
 
@@ -9,7 +9,7 @@ export default function ListCountries () {
         <>
             <SearchBar/>
             <section className="p-5 lg:px-64">
-                <CountriesFilters/>
+                <ListCountriesFilters/>
                 <List/>
                 <ListCountriesFooter/>
             </section>

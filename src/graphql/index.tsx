@@ -43,9 +43,8 @@ export const GET_COUNTRY_DETAILS = gql`
                 _id
                 name
                 alpha2Code
-                location {
-                    longitude
-                    latitude
+                flag {
+                    svgFile
                 }
             }
             timezones {
@@ -61,6 +60,10 @@ export const GET_COUNTRY_DETAILS = gql`
                 svgFile
             }
             officialLanguages {
+                _id
+                name
+            }
+            subregion {
                 name
             }
         }

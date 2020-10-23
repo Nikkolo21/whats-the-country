@@ -3,7 +3,7 @@ import { useLazyQuery } from '@apollo/react-hooks';
 import { GET_COUNTRY_LIST } from '../../graphql';
 import { CountriesData } from '../../model/ListCountriesModel';
 import { useStore } from '../../store';
-import CountryCard from '../CountryCard';
+import ListCountriesCard from '../ListCountriesCard';
 
 function List() {
     const [getCountries, {loading, data}] = useLazyQuery<CountriesData>(GET_COUNTRY_LIST);
@@ -39,7 +39,8 @@ function List() {
         <section>
             {
                 data && data.Country && data.Country.map(elem =>
-                    <CountryCard
+                    <ListCountriesCard
+                        _id={elem._id}
                         key={elem.alpha2Code}
                         name={elem.name}
                         alpha2Code={elem.alpha2Code}
