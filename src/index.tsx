@@ -1,30 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './styles/index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { ApolloProvider } from "react-apollo";
 
-import { ApolloClient } from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { HttpLink } from 'apollo-link-http';
-import { ApolloProvider } from '@apollo/react-hooks';
-
-const cache = new InMemoryCache();
-const link = new HttpLink({
-  uri: 'https://countries-274616.ew.r.appspot.com/'
-})
+import ApolloClient from "apollo-boost";
 
 const client = new ApolloClient({
-  cache,
-  link
-})
+  uri: 'https://countries-274616.ew.r.appspot.com/'
+});
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ApolloProvider client={client}>
-        <App />
-    </ApolloProvider>
-  </React.StrictMode>,
+  
+  <ApolloProvider client={client}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </ApolloProvider>,
   document.getElementById('root')
 );
 
