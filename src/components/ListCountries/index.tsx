@@ -26,7 +26,9 @@ function List() {
                 offset: pageOffset,
                 language,
                 currency,
-                name: inputSearch
+                name: inputSearch,
+                region
+                
             }
         });
     }, [language, currency, region, inputSearch, pageOffset, pageSize, getCountries])

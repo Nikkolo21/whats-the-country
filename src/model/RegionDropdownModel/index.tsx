@@ -1,9 +1,9 @@
-export interface Region {
+export interface Subregion {
     _id: string,
     name: string,
-    subregions: object
+    countries: object
 }
 
-export interface RegionsData {
-    Region: Region[]
+export interface SubregionsData {
+    Subregion: Subregion[]
 }

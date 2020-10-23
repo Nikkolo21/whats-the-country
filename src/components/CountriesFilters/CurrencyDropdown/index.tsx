@@ -7,15 +7,17 @@ import { useLazyQuery } from '@apollo/react-hooks';
 
 function CurrencyDropdown() {
     const [searchCurrencies, {loading, data}] = useLazyQuery<CurrenciesData>(GET_CURRENCY_INFO);
-    const [inputSearch, currency, setCurrency] = useStore(state => [state.inputSearch, state.currency, state.setCurrency]);
+    const [inputSearch, currency, language, region, setCurrency] = useStore(state => [state.inputSearch, state.currency, state.language, state.region, state.setCurrency]);
 
     useEffect(() => {
         searchCurrencies({
             variables: {
-                country: inputSearch
+                country: inputSearch,
+                language,
+                region
             }
         })
-    }, [inputSearch])
+    }, [inputSearch, language, region, searchCurrencies])
 
     return (
         <Dropdown

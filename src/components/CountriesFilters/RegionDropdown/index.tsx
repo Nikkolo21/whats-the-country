@@ -1,21 +1,23 @@
 import React, { useEffect } from 'react';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { GET_REGION_INFO } from '../../../graphql';
-import { RegionsData } from '../../../model/RegionDropdownModel';
+import { SubregionsData } from '../../../model/RegionDropdownModel';
 import Dropdown from '../../shared/Dropdown';
 import {useStore} from '../../../store';
 
 function RegionDropdown() {
-    const [searchRegions, {loading, data}] = useLazyQuery<RegionsData>(GET_REGION_INFO);
-    const [inputSearch, region, setRegion] = useStore(state => [state.inputSearch, state.region, state.setRegion]);
+    const [searchRegions, {loading, data}] = useLazyQuery<SubregionsData>(GET_REGION_INFO);
+    const [inputSearch, region, currency, language, setRegion] = useStore(state => [state.inputSearch, state.region, state.currency, state.language, state.setRegion]);
 
     useEffect(() => {
         searchRegions({
             variables: {
-                country: inputSearch
+                country: inputSearch,
+                currency,
+                language
             }
         })
-    }, [inputSearch])
+    }, [inputSearch, currency, language, searchRegions])
 
     return (
         <Dropdown
@@ -23,7 +25,7 @@ function RegionDropdown() {
             selectedValue={region}
             onChangeFn={(e: string) => setRegion(e)}
             loading={loading}
-            data={data && data.Region}
+            data={data && data.Subregion}
             value="name"
         />
     )

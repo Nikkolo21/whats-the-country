@@ -1,7 +1,7 @@
 import { gql } from 'apollo-boost';
 
 export const GET_COUNTRY_INFO = gql`
-    query($first: Int, $offset: Int, $language: String, $currency: String, $name: String) {
+    query($first: Int, $offset: Int, $language: String, $currency: String, $name: String, $region: String) {
         Country(orderBy: name_asc, first: $first, offset: $offset, filter: {
             name_contains: $name,
             officialLanguages_some: {
@@ -10,6 +10,9 @@ export const GET_COUNTRY_INFO = gql`
             currencies_some: {
                 name_starts_with: $currency
             },
+            subregion: {
+                name_starts_with: $region
+            }
         }) 
         {
             name,
@@ -32,10 +35,16 @@ export const GET_COUNTRY_INFO = gql`
 
     
 export const GET_CURRENCY_INFO = gql`
-    query($country: String) {
+    query($country: String, $language: String, $region: String) {
         Currency(orderBy: name_asc, filter: {
             countries_some: {
                 name_contains: $country
+                officialLanguages_some: {
+                    name_starts_with: $language
+                }
+                subregion: {
+                    name_starts_with: $region
+                }
             }
         }) {
             _id
@@ -49,10 +58,16 @@ export const GET_CURRENCY_INFO = gql`
     }`;
 
 export const GET_LANGUAGE_INFO = gql`
-    query($country: String) {
+    query($country: String, $currency: String, $region: String) {
         Language(orderBy: name_asc, filter: {
             countries_some: {
                 name_contains: $country
+                currencies_some: {
+                    name_starts_with: $currency
+                }
+                subregion: {
+                    name_starts_with: $region
+                }
             }
         }) {
             _id
@@ -68,19 +83,22 @@ export const GET_LANGUAGE_INFO = gql`
     }`;
 
 export const GET_REGION_INFO = gql`
-    query($country: String) {
-        Region(orderBy: name_asc, filter: {
+    query($country: String, $currency: String, $language: String) {
+        Subregion(orderBy: name_asc, filter: {
             countries_some: {
                 name_contains: $country
+                currencies_some: {
+                    name_starts_with: $currency
+                }
+                officialLanguages_some: {
+                    name_starts_with: $language
+                }
             }
-        }) {
+          }) {
             _id
             name
-            subregions {
+            countries {
                 name
-                countries {
-                    name
-                }
             }
         }
     }`;

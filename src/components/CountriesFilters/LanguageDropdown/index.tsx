@@ -7,15 +7,17 @@ import { useLazyQuery } from '@apollo/react-hooks';
 
 function LanguageDropdown() {
     const [searchLanguages, {loading, data}] = useLazyQuery<LanguagesData>(GET_LANGUAGE_INFO);
-    const [inputSearch, language, setLanguage] = useStore(state => [state.inputSearch, state.language, state.setLanguage]);
+    const [inputSearch, currency, region, language, setLanguage] = useStore(state => [state.inputSearch, state.currency, state.region, state.language, state.setLanguage]);
 
     useEffect(() => {
         searchLanguages({
             variables: {
-                country: inputSearch
+                country: inputSearch,
+                currency,
+                region
             }
         })
-    }, [inputSearch])
+    }, [inputSearch, currency, region, searchLanguages])
 
     return (
         <Dropdown
