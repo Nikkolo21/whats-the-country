@@ -4,16 +4,20 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import SearchCountries from './views/SearchCountries';
 import ListCountries from './views/ListCountries';
 import './styles/tailwind.output.css';
+import CountryDetails from './views/CountryDetails';
 
 function App() {
   return (
-    <section style={{backgroundColor: 'rgba(10, 10, 10, 0.04)', minHeight: '100vh'}}>
+    <section style={{backgroundColor: 'rgba(10, 10, 10, 0.03)', minHeight: '100vh'}}>
       <Router>
         <Route exact path="/">
           <SearchCountries/>
         </Route>
-        <Route path="/countries">
+        <Route exact path="/countries">
           <ListCountries/>
+        </Route>
+        <Route path="/countries/:alpha">
+          <CountryDetails/>
         </Route>
       </Router>
     </section>

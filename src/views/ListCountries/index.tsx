@@ -6,11 +6,13 @@ import ListCountriesFooter from '../../components/ListCountriesFooter';
 
 export default function ListCountries () {
     return (
-        <section className="p-5 lg:px-64">
+        <>
             <SearchBar/>
-            <CountriesFilters/>
-            <List/>
-            <ListCountriesFooter/>
-        </section>
+            <section className="p-5 lg:px-64">
+                <CountriesFilters/>
+                <List/>
+                <ListCountriesFooter/>
+            </section>
+        </>
     )
 }

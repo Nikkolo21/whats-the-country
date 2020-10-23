@@ -1,11 +1,11 @@
 export interface Country {
     alpha2Code: string,
-    currencies: object[],
     name: string,
     nativeName: string,
-    officialLanguages: object[],
-    subregion: object,
-    flag: flag
+    flag: flag,
+    capital?: string,
+    population?: string,
+    area?: number,
 }
 
 interface flag {

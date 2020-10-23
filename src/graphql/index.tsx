@@ -1,6 +1,6 @@
 import { gql } from 'apollo-boost';
 
-export const GET_COUNTRY_INFO = gql`
+export const GET_COUNTRY_LIST = gql`
     query($first: Int, $offset: Int, $language: String, $currency: String, $name: String, $region: String) {
         Country(orderBy: name_asc, first: $first, offset: $offset, filter: {
             name_contains: $name,
@@ -15,28 +15,56 @@ export const GET_COUNTRY_INFO = gql`
             }
         }) 
         {
-            name,
-            nativeName,
-            alpha2Code,
-            nameTranslation,
+            name
+            nativeName
             flag {
                 svgFile
-            },
-            officialLanguages {
-                name
-            },
-            currencies {
-                name
-            },
-            subregion {
-                name,
-                region {
-                    name
-                }
             }
+            alpha2Code
         }
     }`;
 
+
+export const GET_COUNTRY_DETAILS = gql`
+    query($alpha: String) {
+        Country(alpha2Code: $alpha) {
+            name
+            alpha2Code
+            nameTranslation
+            area
+            capital
+            populationDensity
+            location {
+                longitude
+                latitude
+            }
+            population
+            borders {
+                _id
+                name
+                alpha2Code
+                location {
+                    longitude
+                    latitude
+                }
+            }
+            timezones {
+                _id
+                name
+                countries {
+                    _id
+                    name
+                    alpha2Code
+                }
+            }
+            flag {
+                svgFile
+            }
+            officialLanguages {
+                name
+            }
+        }
+    }`;
     
 export const GET_CURRENCY_INFO = gql`
     query($country: String, $language: String, $region: String) {

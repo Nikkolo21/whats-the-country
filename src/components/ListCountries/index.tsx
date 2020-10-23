@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useLazyQuery } from '@apollo/react-hooks';
-import { GET_COUNTRY_INFO } from '../../graphql';
+import { GET_COUNTRY_LIST } from '../../graphql';
 import { CountriesData } from '../../model/ListCountriesModel';
 import { useStore } from '../../store';
 import CountryCard from '../CountryCard';
 
 function List() {
-    const [getCountries, {loading, data}] = useLazyQuery<CountriesData>(GET_COUNTRY_INFO);
+    const [getCountries, {loading, data}] = useLazyQuery<CountriesData>(GET_COUNTRY_LIST);
 
     const [language, currency, region, inputSearch, pageOffset, pageSize]: any = useStore<any>(
         (state) => [
@@ -38,16 +38,15 @@ function List() {
     return (
         <section>
             {
-                data && data.Country && data.Country.map(elem => <CountryCard
-                    key={elem.alpha2Code}
-                    name={elem.name}
-                    currencies={elem.currencies}
-                    alpha2Code={elem.alpha2Code}
-                    officialLanguages={elem.officialLanguages}
-                    subregion={elem.subregion}
-                    flag={elem.flag}
-                    nativeName={elem.nativeName}
-                />)
+                data && data.Country && data.Country.map(elem =>
+                    <CountryCard
+                        key={elem.alpha2Code}
+                        name={elem.name}
+                        alpha2Code={elem.alpha2Code}
+                        nativeName={elem.nativeName}
+                        flag={elem.flag}
+                    />
+                )
             }
         </section>
     )
