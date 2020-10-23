@@ -8,16 +8,17 @@ import { useHistory } from 'react-router-dom';
 export default function SearchBar() {
     const history = useHistory();
     const { register, handleSubmit } = useForm();
-    const [inputSearch, setInputSearch] = useStore(state => [state.inputSearch, state.setInputSearch]);
+    const [inputSearch, setInputSearch, elemsPerPage, setPageSize] = useStore(state => [state.inputSearch, state.setInputSearch, state.elemsPerPage, state.setPageSize]);
 
     const onSubmit = (inputSearch: string) => {
-        history.push("/countries");
+        setPageSize(elemsPerPage);
         setInputSearch(inputSearch);
+        history.push("/countries");
     }
 
     return (
-        <section className="flex py-16 px-12 lg:px-24 xl:px-64 bg-indigo-500">
-            <form onSubmit={handleSubmit((e) => onSubmit(e.countryName))} className="flex w-full w-full px-3 md:mb-0">
+        <section className="py-16 px-12 lg:px-24 xl:px-64 bg-indigo-500">
+            <form onSubmit={handleSubmit((e) => onSubmit(e.countryName))} className="flex flex-col md:flex-row w-full w-full px-3 md:mb-0">
                 <Input defaultValue={inputSearch} inputRef={register()} inputName="countryName" inputType="text" placeholder="Search country"></Input>
                 <Button primary title="Search"/>
             </form>

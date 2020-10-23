@@ -7,7 +7,7 @@ interface ButtonI {
 
 function Button({title, primary}: ButtonI) {
     return (
-        <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold ml-2 px-12 rounded">
+        <button className="mt-4 h-12 md:mt-0 md:h-auto bg-blue-500 hover:bg-blue-600 text-white font-bold ml-2 px-6 md:px-12 rounded">
             {title}
         </button>
     )

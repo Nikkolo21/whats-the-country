@@ -2,17 +2,17 @@ import create, { GetState, SetState } from 'zustand';
 
 export type MyState = {
     language: string;
-    setLanguage: (language: string) => void
+    setLanguage: (language: string) => void;
     currency: string;
-    setCurrency: (currency: string) => void
+    setCurrency: (currency: string) => void;
     region: string;
-    setRegion: (region: string) => void
+    setRegion: (region: string) => void;
     inputSearch: string;
-    setInputSearch: (inputSearch: string) => void
-    pageOffset: number;
-    setPageOffset: (pageOffset: number) => void
+    setInputSearch: (inputSearch: string) => void;
+    elemsPerPage: number;
+    setElemsPerPage: (elemsPerPage: number) => void;
     pageSize: number;
-    setPageSize: (pageSize: number) => void
+    setPageSize: (pageSize: number) => void;
 }
 
 export const useStore = create<MyState>((set: SetState<MyState>, get: GetState<MyState>) => ({
@@ -24,8 +24,8 @@ export const useStore = create<MyState>((set: SetState<MyState>, get: GetState<M
     setRegion: (region: string) => set({region}),
     inputSearch: "",
     setInputSearch: (inputSearch: string) => set({inputSearch}),
-    pageOffset: 0,
-    setPageOffset: (pageOffset: number) => set({pageOffset}),
+    elemsPerPage: 20,
+    setElemsPerPage: (elemsPerPage: number) => set({elemsPerPage}),
     pageSize: 20,
-    setPageSize: (pageSize: number) => set({pageSize}),
+    setPageSize: (pageSize: number) => set({pageSize})
 }));
