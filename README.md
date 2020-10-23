@@ -20,3 +20,5 @@ npm start
 
 ## Notes
 This repo is only about a Crehana test for the front-end position.
+
+To find a country, search in Capitalize because the API used is built this way.

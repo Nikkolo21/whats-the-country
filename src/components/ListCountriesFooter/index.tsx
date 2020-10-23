@@ -12,7 +12,7 @@ export default function ListCountriesFooter({elems} : ListCountriesFooterProps) 
         <footer className="text-center">
             {
                 elems < pageSize ?
-                    "No hay más elementos":
+                    "There are no more elements":
                     <button className="mt-3 text-indigo-500" onClick={() => setPageSize(Number(elemsPerPage + pageSize))}>Ver más </button>
             }
         </footer>
