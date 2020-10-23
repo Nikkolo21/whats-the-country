@@ -36,7 +36,7 @@ function List() {
     if (loading) return <div className="w-full bg-gray-200 my-2 px-16 py-12 rounded"></div>
 
     return (
-        <section className="p-12 xl:px-64">
+        <section className="p-4 sm:p-12 xl:px-64">
             {
                 data && data.Country && data.Country[0] ? 
                 <>
