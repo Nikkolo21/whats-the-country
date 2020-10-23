@@ -1,7 +1,12 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-export default function CountryDetailsBorders({title, elements}: {title: string, elements: Array<any> | undefined}) {
+type CountryDetailsBordersProps = {
+    title: string,
+    elements: Array<any> | undefined
+}
+
+export default function CountryDetailsBorders({title, elements}: CountryDetailsBordersProps) {
     const history = useHistory();
     return (
         <div className="flex flex-wrap text-base md:text-lg my-2">

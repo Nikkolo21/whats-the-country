@@ -1,6 +1,11 @@
 import React from 'react';
 
-export default function CardSimpleList({title, elements}: {title: string; elements: Array<any> | undefined}) {
+type CardSimpleListProps = {
+    title: string;
+    elements: Array<any> | undefined
+} 
+
+export default function CardSimpleList({title, elements}: CardSimpleListProps) {
     return (
         <div className="flex flex-wrap text-base md:text-lg my-2">
             {title}: {

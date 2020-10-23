@@ -1,6 +1,11 @@
 import React from 'react';
 
-export default function DisplayElements({title, element}: {title: string, element: string | undefined}) {
+type CountryDetailsElementProps = {
+    title: string,
+    element: string | undefined
+}
+
+export default function CountryDetailsElement({title, element}: CountryDetailsElementProps) {
     return (
         <div className="flex text-base md:text-lg my-2">{title}: {element}</div>
     )

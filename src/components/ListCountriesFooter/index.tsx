@@ -1,7 +1,11 @@
 import React from 'react';
 import {useStore} from '../../store';
 
-export default function ListCountriesFooter({elems} : {elems: number}) {
+type ListCountriesFooterProps = {
+    elems: number
+}
+
+export default function ListCountriesFooter({elems} : ListCountriesFooterProps) {
     const [pageSize, elemsPerPage, setPageSize] = useStore(state => [state.pageSize, state.elemsPerPage, state.setPageSize]);
 
     return (

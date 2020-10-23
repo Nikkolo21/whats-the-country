@@ -1,6 +1,6 @@
 import React from 'react';
 
-type InputType = {
+type InputProps = {
     placeholder: string,
     inputType: string,
     inputName: string,
@@ -8,7 +8,7 @@ type InputType = {
     defaultValue?: string
 }
 
-function Input({placeholder, inputType, inputName, inputRef, defaultValue}: InputType) {
+function Input({placeholder, inputType, inputName, inputRef, defaultValue}: InputProps) {
     return (
         <input
             defaultValue={defaultValue}
