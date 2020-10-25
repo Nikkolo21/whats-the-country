@@ -9,7 +9,8 @@ import CountryDetailsBorders from '../CountryDetailsBorders';
 import CountryDetailsList from '../CountryDetailsList';
 
 export default function CountryDetails() {
-    const {alpha} : {alpha: string} = useParams();
+    const params = useParams<{alpha: string}>();
+    const alpha = params?.alpha;
     const [country, setCountry] = useState<Country>();
     const [getCountry, {loading, data}] = useLazyQuery<CountriesData>(GET_COUNTRY_DETAILS);
 

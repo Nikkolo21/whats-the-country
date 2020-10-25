@@ -2,7 +2,7 @@ import React from 'react';
 
 type DropdownProps = {
     onChangeFn: (e: any) => void,
-    loading: boolean,
+    loading?: boolean,
     selectedValue: string | number,
     title?: string,
     data: any[] | undefined,
