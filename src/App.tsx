@@ -3,8 +3,8 @@ import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import SearchCountries from './views/SearchCountries';
 import ListCountries from './views/ListCountries';
-import './styles/tailwind.output.css';
 import CountryDetails from './views/CountryDetails';
+import './styles/tailwind.output.css';
 
 function App() {
   return (

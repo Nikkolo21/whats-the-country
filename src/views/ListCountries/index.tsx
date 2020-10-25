@@ -1,11 +1,11 @@
 import React from 'react';
-import SearchBar from '../../components/SearchBar';
+import MainSearchBar from '../../components/MainSearchBar';
 import List from '../../components/ListCountries';
 
 export default function ListCountries () {
     return (
         <>
-            <SearchBar/>
+            <MainSearchBar/>
             <List/>
         </>
     )

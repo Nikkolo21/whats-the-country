@@ -41,16 +41,16 @@ function List() {
                 data && data.Country && data.Country[0] ? 
                 <>
                     <ListCountriesFilters/>
-                        {data.Country.map(elem =>
-                            <ListCountriesCard
-                                _id={elem._id}
-                                key={elem.alpha2Code}
-                                name={elem.name}
-                                alpha2Code={elem.alpha2Code}
-                                nativeName={elem.nativeName}
-                                flag={elem.flag}
-                            />
-                        )}
+                    {data.Country.map(elem =>
+                        <ListCountriesCard
+                            _id={elem._id}
+                            key={elem.alpha2Code}
+                            name={elem.name}
+                            alpha2Code={elem.alpha2Code}
+                            nativeName={elem.nativeName}
+                            flag={elem.flag}
+                        />
+                    )}
                     <ListCountriesFooter elems={data.Country.length}/>
                 </>:
                 "There is not match :("
