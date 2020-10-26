@@ -1,13 +1,22 @@
 import { gql } from 'apollo-boost';
 
-export const GET_COUNTRY_LIST = gql`query($first: Int, $language: String, $currency: String, $name: String, $region: String) {
+export const GET_COUNTRY_LIST = gql`query($first: Int, $language: String, $currency: String, $name: String, $nameCap: String, $region: String) {
         Country(orderBy: name_asc, first: $first, filter: {
             OR: [
                 {
                     name_contains: $name
                 },
                 {
+                    name_contains: $nameCap
+                },
+                {
                     alpha2Code_contains: $name
+                },
+                {
+                    nativeName_contains: $name
+                },
+                {
+                    nativeName_contains: $nameCap
                 }
 
             ],

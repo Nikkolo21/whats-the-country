@@ -27,6 +27,7 @@ function List() {
                 language,
                 currency,
                 name: inputSearch,
+                nameCap: `${inputSearch && inputSearch[0].toUpperCase()}${inputSearch.slice(1)}`,
                 region
                 
             }
