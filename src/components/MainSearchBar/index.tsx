@@ -10,14 +10,20 @@ type MainSearchBarProps = {
 
 export default function MainSearchBar({onClickFn}: MainSearchBarProps) {
     const { register, handleSubmit } = useForm();
-    const [inputSearch, setInputSearch, elemsPerPage, setPageSize] = useStore(state => [
+    const [inputSearch, setInputSearch, elemsPerPage, setPageSize, setLanguage, setCurrency, setRegion] = useStore(state => [
         state.inputSearch,
         state.setInputSearch,
         state.elemsPerPage,
-        state.setPageSize
+        state.setPageSize,
+        state.setLanguage,
+        state.setCurrency,
+        state.setRegion
     ]);
 
     const onSubmit = (inputSearch: string) => {
+        setLanguage("");
+        setCurrency("");
+        setRegion("");
         setPageSize(elemsPerPage);
         setInputSearch(inputSearch);
         onClickFn && onClickFn();
