@@ -13,6 +13,7 @@ function RegionDropdown() {
         searchRegions({
             variables: {
                 country: inputSearch,
+                countryCap: `${inputSearch && inputSearch[0].toUpperCase()}${inputSearch.slice(1)}`,
                 currency,
                 language
             }
