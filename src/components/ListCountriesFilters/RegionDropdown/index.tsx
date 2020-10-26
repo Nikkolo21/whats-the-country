@@ -19,8 +19,6 @@ function RegionDropdown() {
         })
     }, [inputSearch, currency, language, searchRegions])
 
-    console.log(1);
-
     return (
         <Dropdown
             title="Any Region"
