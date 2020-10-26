@@ -86,16 +86,56 @@ export const GET_COUNTRY_DETAILS = gql`
     }`;
     
 export const GET_CURRENCY_INFO = gql`
-    query($country: String, $language: String, $region: String) {
+    query($country: String, $language: String, $countryCap: String, $region: String) {
         Currency(orderBy: name_asc, filter: {
             countries_some: {
-                name_contains: $country
-                officialLanguages_some: {
-                    name_starts_with: $language
-                }
-                subregion: {
-                    name_starts_with: $region
-                }
+                OR: [
+                    {
+                        name_contains: $country
+                        officialLanguages_some: {
+                            name_starts_with: $language
+                        }
+                        subregion: {
+                            name_starts_with: $region
+                        }
+                    },
+                    {
+                        name_contains: $countryCap
+                        officialLanguages_some: {
+                            name_starts_with: $language
+                        }
+                        subregion: {
+                            name_starts_with: $region
+                        }
+                    },
+                    {
+                        nativeName_contains: $country
+                        officialLanguages_some: {
+                            name_starts_with: $language
+                        }
+                        subregion: {
+                            name_starts_with: $region
+                        }
+                    },
+                    {
+                        nativeName_contains: $countryCap
+                        officialLanguages_some: {
+                            name_starts_with: $language
+                        }
+                        subregion: {
+                            name_starts_with: $region
+                        }
+                    },
+                    {
+                        alpha2Code_contains: $country
+                        officialLanguages_some: {
+                            name_starts_with: $language
+                        }
+                        subregion: {
+                            name_starts_with: $region
+                        }
+                    }
+                ]
             }
         }) {
             _id
@@ -109,16 +149,56 @@ export const GET_CURRENCY_INFO = gql`
     }`;
 
 export const GET_LANGUAGE_INFO = gql`
-    query($country: String, $currency: String, $region: String) {
+    query($country: String, $currency: String, $countryCap: String, $region: String) {
         Language(orderBy: name_asc, filter: {
             countries_some: {
-                name_contains: $country
-                currencies_some: {
-                    name_starts_with: $currency
-                }
-                subregion: {
-                    name_starts_with: $region
-                }
+                OR: [
+                    {
+                        name_contains: $country
+                        currencies_some: {
+                            name_starts_with: $currency
+                        }
+                        subregion: {
+                            name_starts_with: $region
+                        }
+                    },
+                    {
+                        name_contains: $countryCap
+                        currencies_some: {
+                            name_starts_with: $currency
+                        }
+                        subregion: {
+                            name_starts_with: $region
+                        }
+                    },
+                    {
+                        nativeName_contains: $country
+                        currencies_some: {
+                            name_starts_with: $currency
+                        }
+                        subregion: {
+                            name_starts_with: $region
+                        }
+                    },
+                    {
+                        nativeName_contains: $countryCap
+                        currencies_some: {
+                            name_starts_with: $currency
+                        }
+                        subregion: {
+                            name_starts_with: $region
+                        }
+                    },
+                    {
+                        alpha2Code_contains: $country
+                        currencies_some: {
+                            name_starts_with: $currency
+                        }
+                        subregion: {
+                            name_starts_with: $region
+                        }
+                    }
+                ]
             }
         }) {
             _id
@@ -134,16 +214,56 @@ export const GET_LANGUAGE_INFO = gql`
     }`;
 
 export const GET_REGION_INFO = gql`
-    query($country: String, $currency: String, $language: String) {
+    query($country: String, $currency: String, $countryCap: String, $language: String) {
         Subregion(orderBy: name_asc, filter: {
             countries_some: {
-                name_contains: $country
-                currencies_some: {
-                    name_starts_with: $currency
-                }
-                officialLanguages_some: {
-                    name_starts_with: $language
-                }
+                OR: [
+                    {
+                        name_contains: $country
+                        currencies_some: {
+                            name_starts_with: $currency
+                        }
+                        officialLanguages_some: {
+                            name_starts_with: $language
+                        }
+                    },
+                    {
+                        name_contains: $countryCap
+                        currencies_some: {
+                            name_starts_with: $currency
+                        }
+                        officialLanguages_some: {
+                            name_starts_with: $language
+                        }
+                    },
+                    {
+                        nativeName_contains: $country
+                        currencies_some: {
+                            name_starts_with: $currency
+                        }
+                        officialLanguages_some: {
+                            name_starts_with: $language
+                        }
+                    },
+                    {
+                        nativeName_contains: $countryCap
+                        currencies_some: {
+                            name_starts_with: $currency
+                        }
+                        officialLanguages_some: {
+                            name_starts_with: $language
+                        }
+                    },
+                    {
+                        alpha2Code_contains: $country
+                        currencies_some: {
+                            name_starts_with: $currency
+                        }
+                        officialLanguages_some: {
+                            name_starts_with: $language
+                        }
+                    }
+                ]
             }
           }) {
             _id
